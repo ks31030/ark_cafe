@@ -1,0 +1,31 @@
+package com.example.shoppingmall.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.example.shoppingmall.repository.ProductRepository;
+
+@Controller
+public class ProductController {
+
+    @Autowired
+    private ProductRepository productRepository;
+    
+    @Autowired
+    private ProductService productService;
+
+    @GetMapping("/products")
+    public String listProducts(Model model) {
+        model.addAttribute("products", productRepository.findAll());
+        return "product/list";
+    }
+    
+ // 상품 생성 페이지로 이동
+    @GetMapping("/create")
+    public String createProductForm(Model model) {
+        model.addAttribute("product", new Product());
+        return "product/createForm";
+    }
+}

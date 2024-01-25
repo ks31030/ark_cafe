@@ -1,0 +1,17 @@
+package com.example.cafe.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.cafe.service.CafeService;
+
+@Controller
+@RequestMapping("/cafes")
+public class CafeController {
+	public CafeService cafeService;
+	
+	@Autowired
+	public CafeController(CafeService cafeService) {
+		this.cafeService = cafeService;
+	}
+}

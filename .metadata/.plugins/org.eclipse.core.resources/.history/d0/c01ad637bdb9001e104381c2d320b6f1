@@ -1,0 +1,25 @@
+package com.kh.springdb.service;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import com.kh.springdb.model.SiteUser;
+import com.kh.springdb.model.UserRole;
+import com.kh.springdb.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
+public class UserService {
+
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    public SiteUser createUser(String username, String email, String password, UserRole role) {
+        SiteUser user = new SiteUser();
+        user.setUsername(username);
+        user.setEmall(email);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setIsRole(role);
+        userRepository.save(user);
+        return user;
+    }
+}

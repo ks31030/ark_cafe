@@ -1,0 +1,24 @@
+server.port= 8085
+
+spring.datasource.url=jdbc:oracle:thin:@//localhost:1521/xe
+spring.datasource.username=EXAM
+spring.datasource.password=KH1234
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+
+spring.thymeleaf.prefix = classpath:/templates/
+spring.thymeleaf.suffix = .html
+
+spring.jpa.show-sql=true
+
+spring.jpa.hibernate.ddl-auto=update
+
+spring.security.loginUrl=/login
+
+spring.security.successUrl=/
+
+spring.security.logoutSuccessUrl=/login
+
+spring.main.allow-circular-references=true
+spring.security.user.name=root
+spring.security.user.password=root
+spring.security.user.roles=ADMIN

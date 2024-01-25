@@ -1,0 +1,5 @@
+package com.example.shoppingmall.repository;
+
+public class ProductRepository {
+
+}

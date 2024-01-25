@@ -1,0 +1,38 @@
+package com.example.shoppingmall.service;
+
+@Service
+@RequiredArgsConstructor
+public class ProductService {
+
+    private final ProductRepository productRepository;
+
+    public List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+
+    public Product saveProduct(Product product, MultipartFile imgFile) throws IOException {
+        String originName = imgFile.getOriginalFilename();
+        String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/img/";
+        File saveFile = new File(projectPath, originName);
+        imgFile.transferTo(saveFile);
+        product.setImgName(originName);
+        product.setImgPath("/img/" + originName);
+        return productRepository.save(product);
+    }
+
+    public Product getProductById(int id) {
+        return productRepository.findProductById(id);
+    }
+
+    public void likeProduct(int productId) {
+        Product product = productRepository.findById(productId).orElse(null);
+        if (product != null) {
+            product.setLikes(product.getLikes() + 1);
+            productRepository.save(product);
+        }
+    }
+
+    public void deleteProductById(int id) {
+        productRepository.deleteById(id);
+    }
+}
